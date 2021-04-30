@@ -65,6 +65,7 @@ Q = diag([ones(1,25) * 0.2, ones(1,25) * 2.5e-3]);
 P = inv(Q); % Gewicht
 
 % Iteration
+j = 0;
 while dg > 10e-3
     dy = y - y_dach;
     w0 = T.^2 - 4 * pi^2 * l.^2 / g_dach;
@@ -84,6 +85,7 @@ while dg > 10e-3
     g_dach = g_dach + dg;
     e = - P * Bt' * lambda;
     y_dach = y + e;
+    j = j+1;
 end
 
 % Ergebnis
