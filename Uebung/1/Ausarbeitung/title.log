@@ -1,6 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.18)  29 APR 2021 00:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=latex 2021.3.18)  4 MAY 2021 02:17
 entering extended mode
  restricted \write18 enabled.
+ Source specials enabled.
  %&-line parsing enabled.
 **title.tex
 (./title.tex
@@ -318,10 +319,10 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (f:/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: dvips.def on input line 105.
 
-(f:/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+(f:/texlive/2020/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
 ))
 \Gin@req@height=\dimen148
 \Gin@req@width=\dimen149
@@ -363,10 +364,15 @@ LaTeX Font Info:    Trying to load font information for T1+ppl on input line 7.
 (f:/texlive/2020/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
-(f:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count268
+(f:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+File: l3backend-dvips.def 2021-03-02 L3 backend support: dvips
 \l__pdf_internal_box=\box51
+\g__pdf_backend_object_int=\count268
+\l__pdf_backend_content_box=\box52
+\l__pdf_backend_model_box=\box53
+\g__pdf_backend_annotation_int=\count269
+\g__pdf_backend_link_int=\count270
+\g__pdf_backend_link_sf_int=\count271
 )
 (./title.aux)
 \openout1 = `title.aux'.
@@ -390,9 +396,9 @@ Package scrbase Info: activating english \listfigurename on input line 7.
 Package scrbase Info: activating english \listtablename on input line 7.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
+*geometry* detected driver: dvips
 *geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
+* driver: dvips
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -425,38 +431,23 @@ Package scrbase Info: activating english \listtablename on input line 7.
 
 LaTeX Info: Redefining \dots on input line 7.
 \big@size=\dimen154
-(f:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count269
-\scratchdimen=\dimen155
-\scratchbox=\box52
-\nofMPsegments=\count270
-\nofMParguments=\count271
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count272
-\MPscratchDim=\dimen156
-\MPnumerator=\count273
-\makeMPintoPDFobject=\count274
-\everyMPtoPDFconversion=\toks21
-) (f:/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
+\c@lstlisting=\count272
 
-(f:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
-\c@lstlisting=\count275
-<Images/GIlogoOrange_BG_white_Rund.png, id=1, 376.40625pt x 376.40625pt>
-File: Images/GIlogoOrange_BG_white_Rund.png Graphic file (type png)
-<use Images/GIlogoOrange_BG_white_Rund.png>
-Package pdftex.def Info: Images/GIlogoOrange_BG_white_Rund.png  used on input l
-ine 12.
-(pdftex.def)             Requested size: 56.90074pt x 56.9055pt.
+! LaTeX Error: File `Images/GIlogoOrange_BG_white_Rund' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 ...ht=2cm]{Images/GIlogoOrange_BG_white_Rund}
+                                                  %
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 1
 3.
-
 (f:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
@@ -484,19 +475,38 @@ LaTeX Font Info:    Trying to load font information for OT1+zplm on input line
 (f:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
-<Images/logo_uni-stuttgart.pdf, id=3, 455.71254pt x 455.71254pt>
-File: Images/logo_uni-stuttgart.pdf Graphic file (type pdf)
-<use Images/logo_uni-stuttgart.pdf>
-Package pdftex.def Info: Images/logo_uni-stuttgart.pdf  used on input line 23.
-(pdftex.def)             Requested size: 56.90134pt x 56.9055pt.
-File: Images/GIlogoOrange_BG_white_Rund.png Graphic file (type png)
-<use Images/GIlogoOrange_BG_white_Rund.png>
-Package pdftex.def Info: Images/GIlogoOrange_BG_white_Rund.png  used on input l
-ine 34.
-(pdftex.def)             Requested size: 170.71947pt x 170.71652pt.
+
+! LaTeX Error: File `Images/logo_uni-stuttgart' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 ...ics[height=2cm]{Images/logo_uni-stuttgart}
+                                                  %
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `Images/GIlogoOrange_BG_white_Rund' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.34 ...ht=6cm]{Images/GIlogoOrange_BG_white_Rund}
+                                                  \\[10mm] % ... und diese "...
+
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Overfull \hbox (5.56314pt too wide) in paragraph at lines 47--48
-[]\T1/ppl/b/n/12 Betreuer: 
+[][]\T1/ppl/b/n/12 Betreuer: 
  []
 
 
@@ -506,13 +516,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 51--55
 
 
 Overfull \hbox (10.95pt too wide) in paragraph at lines 9--59
-[]$[]$ 
+[][]$[]$ 
  []
 
 [1
 
-{f:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Images/GIlogo
-Orange_BG_white_Rund.png> <./Images/logo_uni-stuttgart.pdf>]
+]
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
 (LaTeX3)     59.
@@ -523,20 +532,12 @@ LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
 
  (./title.aux) ) 
 Here is how much of TeX's memory you used:
- 7361 strings out of 479014
- 133732 string characters out of 5863086
- 577381 words of memory out of 5000000
- 24738 multiletter control sequences out of 15000+600000
- 424202 words of font info for 67 fonts, out of 8000000 for 9000
+ 6963 strings out of 479015
+ 128405 string characters out of 5863112
+ 572900 words of memory out of 5000000
+ 24352 multiletter control sequences out of 15000+600000
+ 420284 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,8n,119p,10627b,283s stack positions out of 5000i,500n,10000p,200000b,80000s
-{f:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<f:/tex
-live/2020/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><f:/texlive/2020/texmf
--dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on title.pdf (1 page, 44336 bytes).
-PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 15 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116i,7n,119p,10627b,283s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+Output written on title.dvi (1 page, 1472 bytes).
