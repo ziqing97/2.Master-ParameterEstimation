@@ -2,50 +2,48 @@ close all
 clc
 clearvars
 
-%% SVD
-X = [3,4,5,6,7,8,9];
-Y = [7,7,11,11,15,16,19];
-
-figure
-scatter(X,Y)
-% axis equal
-% xlim([0,12])
-% ylim([0,20])
-X_mean = mean(X);
-Y_mean = mean(Y);
-X = X - X_mean;
-Y = Y - Y_mean;
-
-M = [X', Y'];
-Q = M' * M;
-[U, S, V] = svd(Q);
-
-% U = V
-u1 = U(1,1);
-u2 = U(2,1);
-phi = atan2(u2 ,u1);
-
-a = tan(phi);
-b = Y_mean - a * X_mean; 
-hold on
-plot([0,12],[b,a*12+b])
-
-xsvd = [a;b];
-
-%% GHM ohne
-% Naehrungswerte
+%% Data
 t = [3,4,5,6,7,8,9]';
 h = [7,7,11,11,15,16,19]';
+
+%% SVD  (gleich wie LS)
+A = [t,ones(7,1)];
+[U, S, V] = svd(A,'econ');
+x_svd = V * inv(S) * U' * h;
+h_svd = A * x_svd;
+
+%% SVD 2 (soll wie TLS gleich sein)
+A = [t,ones(7,1)];
+H = [A,h];
+
+[U, S, V] = svd(H);
+E = U(:,end) * S(end,end) * V(:,end)';
+
+x_svd2 = - V(1:end-1,end) / V(end,end);
+H_tilde = - [A,h] * V(:,3) * V(:,3)';
+A_tilde = H_tilde(:,1:2);
+XX = 
+
+h_svd2 = (A + A_tilde) * x_svd2;
+t_svd2 = H_tilde(:,1) + t;
+
+plot(t_svd2,h_svd2)
+
+%% Normal LS
+A = [t,ones(7,1)];
+x_ls = (A' * A) \ A' * h; % a0,b0
+h_ls = A * x_ls;
+
+%% GHM ohne
 P = diag(ones(14,1));
 
 A = [t,ones(7,1)];
 x0 = (A' * A) \ A' * h; % a0,b0
 y = [h;t];
 y0 = [h;t];
-x_dach = x0;
-
 dx_dach = 1;
 j = 1;
+x_dach = x0;
 
 xohne = zeros(2,8);
 xohne(:,1) = x0;
@@ -73,25 +71,16 @@ while norm(dx_dach) > 10e-8
     j = j+1;
 end
 
-figure
-scatter(t,h);
-hold on
-plot([0,12],[x_dach(2),x_dach(1)*12+x_dach(2)])
-axis equal
-xlim([0,12])
-ylim([0,20])
-x_ohne = x_dach;
-
-
+t_dach_gh1 = y0(8:14);
+h_dach_gh1 = y0(1:7);
+x_GHMohne = x_dach;
+% 
+% 
 %% GHM mit
 % Naehrungswerte
 t = [3,4,5,6,7,8,9]';
 h = [7,7,11,11,15,16,19]';
-% 
-% P = diag([1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
-% P = diag([1,2,3,4,5,6,7,1,1,1,1,1,1,1]);
-% P = diag([1,1,1,1,1,1,1,1,2,3,4,5,6,7]);
-P = diag([5,6,7,8,9,1,2,3,4,10,11,12,13,14]);
+P = diag([1,2,3,4,5,6,7,7,6,5,4,3,2,1]);
 
 A = [t,ones(7,1)];
 x0 = (A' * A) \ A' * h; % a0,b0
@@ -120,7 +109,6 @@ while norm(dx_dach) > 10e-7
     lambda = L(1:7);
     dx_dach = L(8:9);
     x_dach = x_dach + dx_dach;
-    
     xmit(:,j+1) = x_dach;
     
     e = -inv(P) * Bt' * lambda;
@@ -128,57 +116,19 @@ while norm(dx_dach) > 10e-7
     j = j+1;
 end
 
+t_dach_gh2 = y0(8:14);
+h_dach_gh2 = y0(1:7);
+x_GHMmit = x_dach;
+
+%% Plot
 figure
-scatter(t,h);
 hold on
-plot([0,12],[x_dach(2),x_dach(1)*12+x_dach(2)])
-axis equal
-xlim([0,12])
-ylim([0,20])
-x_mit = x_dach;
-% % 
-% % 
-% % x_all = [[a;b],x_mit,x_ohne];
-% % 
-% % legend('measurement', 'svd', 'ohne', 'mit')
-% % 
-% % X = [3,4,5,6,7,8,9];
-% % 
-% % 
-% % phi1 = atan(xsvd(1));
-% % l1 = [cos(phi1);sin(phi1)];
-% % Y = [7,7,11,11,15,16,19];
-% % Y = Y - xsvd(2);
-% % M = [X', Y'];
-% % e1 = l1' * M' * M * l1;
-% % 
-% % phi2 = atan(xohne(1,2));
-% % l2 = [cos(phi2);sin(phi2)];
-% % Y = [7,7,11,11,15,16,19];
-% % Y = Y - xohne(2,2);
-% % M = [X', Y'];
-% % e2 = l2' * M' * M * l2;
-% % 
-% % phi3 = atan(xmit(1,3));
-% % l3 = [cos(phi3);sin(phi3)];
-% % % Y = [7,7,11,11,15,16,19];
-% % % Y = Y - xmit(2,3);
-% % % M = [X', Y'];
-% % e3 = l3' * M' * M * l3;
-% % 
-% % 
-% H = [t,ones(7,1)];
-% P = diag([1,2,3,4,5,6,7]);
-% P = diag([1,1,1,1,1,1,1]);
-% x00 = (H' * P * H) \ H' * P * h; % a0,b0
-% hold on
-% plot([0,12],[x00(2),x00(1)*12+x00(2)])
-% % 
-% % 
-% % t1 = [H, h];
-% % [U1, S1, V1] = svd(t1,'econ');
-% % E = U1(:,end) * S1(end,end) * V1(:,end)';
-% % e_dach = E(:,end);
-% % h_dach = h - e_dach;
-% % hold on
-% % plot(t,h_dach,'*-')
+title("Vergleich")
+plot(t,h,"og");
+plot(t,h_ls,"*-","color",'m')
+plot(t_dach_gh2,h_dach_gh2,'*-',"color",'r');
+plot(t_dach_gh1,h_dach_gh1,'*-',"color",'k');
+plot(t,h_svd,'x-',"color",'b')
+plot(t_svd2,h_svd2,"*-","color",'c')
+legend("punkt","normal LS","ghm mit","ghm ohne","svd wie LS",'svd wie GHM')
+

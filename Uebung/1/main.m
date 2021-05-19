@@ -15,7 +15,7 @@ T_mean = mean(T);
 l_mean = mean(l);
 g0 = l_mean * 4 * pi^2 / T_mean^2;
 
-%% Fehler nicht quantifiziert
+%% GHM ohne Gewicht
 % Beobachtungen
 y = [T;l];
 y_dach = y;
@@ -35,7 +35,7 @@ while abs(dg) > 1e-8
     Bt = zeros(len,len*2);
     for i = 1:len
         Bt(i,i) = 2 * y(i); % nach T ableiten
-        Bt(i,i+len) = 4 * pi^2 / g_dach;
+        Bt(i,i+len) = 4 * pi^2 / g_dach; % nach l ableiten
     end
     k1 = [Bt * inv(P) * Bt', -A;
          -A', 0];
@@ -55,7 +55,7 @@ g1 = g_dach;
 % Varianz
 v1 = e' * P * e / (len - 1);
 
-%% Fehler Stochastische Modell
+%% GHM mit Gewicht
 % Beobachtungen
 y = [T;l];
 y_dach = y;
@@ -94,3 +94,26 @@ end
 g2 = g_dach;
 % Varianz
 v2 = e' * P * e / (len - 1);
+
+
+%% SVD
+m = T.^2;
+n = l;
+
+M = [n,m];
+
+Q = M' * M;
+[U,S,V] = svd(Q);
+[U,S,V] = svd(M);
+
+k = V(1,2) / V(2,2);
+
+g3 = 4 * pi^2 / k;
+
+% plot([0,u(1)],[0,u(2)])
+
+%% SVD 2
+[U,S,V] = svd(l,'econ');
+k = V * inv(S) * U' * T.^2;
+g4 = 4 * pi^2 / k;
+

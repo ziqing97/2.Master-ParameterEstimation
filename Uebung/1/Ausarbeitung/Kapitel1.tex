@@ -73,3 +73,43 @@ Varianz:
 \begin{equation*}
 	\sigma^2_2 = 1.54 \cdot 10^{-12}
 \end{equation*}
+\section{SVD Verfahren}
+2 svd Verfahren werden da verwendet:
+\subsection{Verfahren 1}
+$p$ ist der Einheitvektor der zuschätzen Linie;
+\begin{gather}
+	\bm{p} = \begin{bmatrix}
+		\cos \phi \\
+		\sin \phi
+	\end{bmatrix}\\
+	\bm{M} = \begin{bmatrix}
+	\bm{l} &	\bm{T}^2 
+	\end{bmatrix}
+\end{gather}
+Das Ziel ist: $min (\bm{Mp})^2 \rightarrow min(\bm{Mp})^t(\bm{Mp}) \rightarrow min(\bm{p^tM^tMp})$
+\\\\
+$\bm{M^tM}$ ist normal Matrix $\rightarrow svd(\bm{M^tM}) = \bm{U S U^t}$
+\\\\
+$min((\bm{p^tU}) \bm{S} (\bm{p^tU})^t) \rightarrow \lambda_1 (\bm{u_1^t p})^2 + \lambda_2 (\bm{u_2^t p})^2$, wobei $\lambda_1$ und $\lambda_2$ Eigenwerte sind. 
+\\\\
+Annehmen
+$(\bm{u_1^t p}) = \cos(\alpha)$ und $(\bm{u_2^t p}) = \sin(\alpha)$, dann haben wir:
+\\\\
+$\cos^2(\alpha) = s \rightarrow min((\lambda_1 - \lambda_2)s + \lambda_2) \rightarrow s = 1$
+\\\\
+$\bm{p} = \bm{u_2} = \bm{v_2}$, In der Realität kann man $\bm{V}$ Matrix direkt von $svd(\bm{M})$ berechnet.\\\\ $\frac{4 \pi^2}{g} = \frac{V(1,2)}{V(2,2)} \longrightarrow g = 9.7188 \ut{m/s^2}$
+
+\subsection{Verfahren 2}
+\begin{equation*}
+	T^2 = 4 \cdot \pi^2 \cdot \frac{l}{g}
+\end{equation*}
+Diese kann man umschreiben wie:
+\begin{equation*}
+	\bm{y} = \bm{Ax}
+\end{equation*}
+wobei $\bm{y} = \bm{T}^2$, $\bm{A} = \bm{l}$ und $\bm{x} = \frac{4 \pi^2}{g}$
+\begin{gather*}
+	[\bm{U},\bm{S},\bm{V}] = svd(\bm{A}) \\
+	g = x_{dach} = \bm{V} \cdot \bm{S}^{-1} \cdot \bm{U}^T \cdot \bm{y} = 9.7232 \ut{m/s^2}
+\end{gather*}
+Dieses Ergebnis ist ganz gleich wie das von A Modell (normal Least Square)
