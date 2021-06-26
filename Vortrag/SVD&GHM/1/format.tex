@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{setspace,graphicx,amsmath,geometry,fontspec,titlesec,soul,bm}
+\titleformat{\section}[block]{\LARGE\bfseries}{\arabic{section}}{1em}{}[]
+\titleformat{\subsection}[block]{\Large\bfseries\mdseries}{\arabic{section}.\arabic{subsection}}{1em}{}[]
+\titleformat{\subsubsection}[block]{\normalsize\bfseries}{\arabic{subsection}-\alph{subsubsection}}{1em}{}[]
+\titleformat{\paragraph}[block]{\small\bfseries}{[\arabic{paragraph}]}{1em}{}[]
+\setmainfont{Times New Roman}
+\renewcommand{\baselinestretch}{1.15}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\begin{document}
+	\newpagestyle{main}{            
+		\sethead{Ziqing Yu}{V1}{3218051}     
+		\setfoot{}{\thepage}{}     
+		\headrule                                     
+		\footrule                                       
+	}
+	\pagestyle{main}
+
+$h = at+b$
+\section{SVD}
+\begin{gather}
+	\bm{p} = \begin{bmatrix}
+		\cos \phi \\
+		\sin \phi
+	\end{bmatrix}\\
+	\bm{M} = \begin{bmatrix}
+		\bm{h} - \bar{h}, \bm{t} - \bar{t}
+	\end{bmatrix}
+\end{gather}
+Ziel: $min (\bm{Mp})^2 \rightarrow min(\bm{Mp})^t(\bm{Mp}) \rightarrow min(\bm{p^tM^tMp})$
+\\\\
+$\bm{M^tM}$ ist normal Matrix $\rightarrow svd(\bm{M^tM}) = \bm{U S U^t}$
+\\\\
+$min((\bm{p^tU}) \bm{S} (\bm{p^tU})^t) \rightarrow \lambda_1 (\bm{u_1^t p})^2 + \lambda_2 (\bm{u_2^t p})^2$
+\\\\
+Annehmen
+$(\bm{u_1^t p}) = \cos(\alpha)$ und $(\bm{u_2^t p}) = \sin(\alpha)$ 
+\\\\
+$\cos^2(\alpha) = s \rightarrow min((\lambda_1 - \lambda_2)s + \lambda_2) \rightarrow s = 1$
+\\\\
+$\bm{p} = \bm{u_1}$: Richtung bekannt -> $a$ bekannt -> Mittelwert einsetzen -> $b$ berechnet
+
+\section{GMH}
+\begin{equation}
+	\bm{H} = \begin{bmatrix}
+		t_1 & 1\\
+		t_2 & 1\\
+		\vdots & \vdots
+	\end{bmatrix}
+\end{equation}
+\begin{equation}
+	\begin{bmatrix}
+		a_0\\b_0
+	\end{bmatrix} = (\bm{H^tH})^{-1}\bm{H^t}\bm{h}
+\end{equation}
+\begin{equation}
+	f = h - at - b
+\end{equation}
+\begin{equation}
+	\bm{A} = \begin{bmatrix}
+		-t_1 & -1\\
+		-t_2 & -1\\
+		\vdots & \vdots
+	\end{bmatrix}
+\end{equation}
+\begin{equation}
+	\bm{B} = \begin{bmatrix}
+		1 & -a & 0 & 0 & 0 & 0 & \cdots \\
+		0 & 0 & 1 & -a & 0 & 0 & \cdots \\
+		\vdots & \vdots & \vdots & \vdots& \vdots& \vdots& \vdots
+	\end{bmatrix}
+\end{equation}
+
+\section{Experiment}
+\begin{gather}
+	\bm{h} = [7,7,11,11,15,16,19]^t\\
+	\bm{t} = [3,4,5,6,7,8,9]^t
+\end{gather}
+svd: a = 2.1458; b = -0.5892 \\\\
+ohne: a = 2.0714; b = -0.1429 \\\\
+mit $\bm{P} = diag([1,2,3,4,5,6,7,1,2,3,4,5,6,7])$ : a = 2.0711; b = - 0.1395 
+\\\\
+$\phi = \arctan(a) \rightarrow \bm{p} = [\cos(\phi) \sin(\phi)]$
+\\$\bm{M} = [\bm{h}-b, \bm{t}]$
+\\$e = (\bm{Mp})^t(\bm{Mp})$
+\\\\
+$e_{svd} = 1564.807;\\
+e_{ohne} = 1485.715;\\
+e_{mit} = 1485.715$
+\end{document}
