@@ -27,7 +27,7 @@ Z1 = R11 \ (-R12) * Z2;
 
 %% Step 3
 % Rz = [Z1;Z2] / norm([Z1;Z2]);
-Rz = [Z1;Z2] * 400;
+Rz = [Z1;Z2] ;
 Y = Rz(1:2);
 Tao = Rz(3);
 
