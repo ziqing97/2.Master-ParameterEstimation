@@ -22,27 +22,72 @@ If we take $\Delta t$ as 1 unit.
 	R_{t} = \frac{\tau}{\tau + 1} R_{t-1} + \frac{\tau \omega_n^2}{\tau + 1}S_t
 \end{gather*}
 \section{d}
-\begin{align*}
-	R_{t} = & \frac{\tau}{\tau + 1} R_{t-1} + \frac{\tau \omega_n^2}{\tau + 1}S_t \\
-		  = & \frac{\tau}{\tau + 1} R_{t-1} + \frac{\tau \omega_n^2}{\tau + 1}S_0 + \frac{\tau \omega_n^2}{\tau + 1} \sum_{i=1}^{t} \Delta S_i \\
-		  = & \alpha R_{t-1} + \beta + \gamma \sum_{i=1}^{t} \Delta S_i
-\end{align*}
-Thus we have:
+After solve this ODE:
 \begin{gather*}
-	S_0 = \frac{\beta}{\gamma} \\
-	\omega_0 = \sqrt{\frac{\gamma}{\alpha}} \\
-	\tau = \frac{\alpha}{1-\alpha}
-\end{gather*}
-The 3 parameters can be calculated using least square since we have discharge and $\Delta S$ data.
-\clearpage
-\begin{gather*}
-	R(t) = R(t-1)e^{\frac{\Delta t}{\tau}} + e^{\frac{\Delta t}{\tau}} \omega^2 \int S(t) e^{\frac{-\Delta t}{\tau}} dt \\
-	R(t) = R(t-1)e^{\frac{\Delta t}{\tau}} +  \omega^2\left[\frac{S(t-1) + S(t)}{2} \cdot \Delta t\right]
-\end{gather*}\\\\\\\\
-
-\begin{gather*}
-	\omega^2 \tau (e^{\frac{\Delta t}{\tau}} - 1) \\
 	R(t_{n+1}) = R(t_{n}) e^{\frac{\Delta t}{\tau}} + \bar{S}(t_{n}) \cdot \omega^2 \tau (e^{\frac{\Delta t}{\tau}} - 1) \\
 	R(t_{n+1}) = R(t_{n}) e^{\frac{\Delta t}{\tau}} + \left(S_0 + \Delta S(t_{n})\right) \cdot \omega^2 \tau (e^{\frac{\Delta t}{\tau}} - 1)
 \end{gather*}
-before from CSR, after GPL
+\section{Part 2}
+before from CSR, after JPL
+\begin{gather*}
+	d \begin{bmatrix}
+		\Delta S\\
+		R
+	\end{bmatrix} = \begin{bmatrix}
+	0 & -1 \\
+	\omega^2 & -\frac{1}{\tau}
+\end{bmatrix} \begin{bmatrix}
+\Delta S\\
+R
+\end{bmatrix} + \begin{bmatrix}
+0 & 1 & -1 \\
+\omega^2 & 0 & 0
+\end{bmatrix} \begin{bmatrix}
+S_{0}\\
+P\\
+ET
+\end{bmatrix} \\
+\begin{bmatrix}
+	\Delta S_{measured} \\
+	R_{measured}
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} \begin{bmatrix}
+\Delta S_{predict} \\
+R_{predict} 
+\end{bmatrix} 
+\end{gather*}
+which means
+\begin{gather*}
+	\begin{bmatrix}
+		\Delta S_{n+1} \\
+		R_{n+1}
+	\end{bmatrix} = \begin{bmatrix}
+	1 & -1 \\
+	\omega^2 \tau (e^{\frac{\Delta t}{\tau}} - 1) & e^{\frac{\Delta t}{\tau}} \end{bmatrix} \begin{bmatrix}
+		\Delta S_{n} \\
+		R_{n}
+	\end{bmatrix} + \begin{bmatrix}
+	0 & 1 & -1\\
+	\omega^2 \tau (e^{\frac{\Delta t}{\tau}} - 1) & 0 & 0
+\end{bmatrix} \begin{bmatrix}
+S_0 \\
+P \\
+ET
+\end{bmatrix} \\
+\begin{bmatrix}
+	\Delta S_{measured} \\
+	R_{measured}
+\end{bmatrix} = \begin{bmatrix}
+	1 & 0 \\
+	0 & 1
+\end{bmatrix} \begin{bmatrix}
+	\Delta S_{predict} \\
+	R_{predict} 
+\end{bmatrix} 
+\end{gather*}
+Variance for $R$, I have $R$ from 1968.
+\begin{gather*}
+	\sigma^2_{R_{January}} = \frac{1}{n-1}\sum (R_{i,January} - \bar{R}_{January})^2
+\end{gather*}
