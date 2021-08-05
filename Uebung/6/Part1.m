@@ -2,17 +2,17 @@ clc
 clear
 close all
 load("Discharge_Data.mat")
-load("TWSA_Data.mat")
+load("TWSAerr_Data.mat")
 load("ETdata_Ue6.mat")
 load("PrecData_Ue6.mat")
 
 % unit m^3
-t1 = TWSA.date;
+t1 = TWSA_data.time;
 t2 = Discharge.date;
 t3 = Prec_data.time;
 t4 = ET_data.time;
 
-TWSA = TWSA.value;
+TWSA = TWSA_data.value;
 Discharge = Discharge.value*24*3600*30;
 ET = ET_data.value*30;
 P = Prec_data.value*30;
@@ -56,3 +56,4 @@ omega = sqrt(para(2) / tau / (exp(1/tau) -1));
 
 parameter = [tau,S0,omega];
 save('parameter.mat','parameter')
+save('sigma_S0.mat','sigma_S0')

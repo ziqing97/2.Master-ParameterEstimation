@@ -1,4 +1,4 @@
-function [x,P]=ukf(fstate,x,u,P,hmeas,z,Q,R)
+function [x1,P1,x,P]=ukf(fstate,x,u,P,hmeas,z,Q,R)
 % UKF   Unscented Kalman Filter for nonlinear dynamic systems
 % [x, P] = ukf(f,x,u,P,h,z,Q,R) returns state estimate, x and state covariance, P 
 % for nonlinear dynamic system (for simplicity, noises are assumed as additive):
@@ -23,6 +23,7 @@ function [x,P]=ukf(fstate,x,u,P,hmeas,z,Q,R)
 %
 % By Yi Cao at Cranfield University, 04/01/2008
 %
+% changed for this work specificly
 L=numel(x);                                 %numer of states
 m=numel(z);                                 %numer of measurements
 alpha=1e-3;                                 %default, tunable

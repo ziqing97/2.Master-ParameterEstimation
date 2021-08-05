@@ -1,0 +1,12 @@
+function[] = err_plot(t,x,std,color)
+if color == 'blue'
+    cl = 'b';
+    cp = [51 153 255]./255
+elseif color = 'red'
+x_min = x - std;
+x_max = x + std;
+plot(t,x,'b','Linewidth',2)
+patch_x = fill([t',fliplr(t')],[x_min,fliplr(x_max)],[51 153 255]./255);
+set(patch_x, 'edgecolor', 'none');
+set(patch_x, 'FaceAlpha', 0.5);
+end

@@ -159,18 +159,7 @@ t2 = t_twsa;
 t = datenum(t);
 t_twsa = datenum(t_twsa);
 t_twsa_temp = zeros(174,1);
-TWSA_temp = zeros(174,1);
-
-t_twsa_temp(1:147) = t_twsa(1:147);
-t_twsa_temp(148) = mean(t_twsa(147),t_twsa(148));
-t_twsa_temp(149:end) = t_twsa(148:end);
-
-TWSA_temp(1:147) = TWSA(1:147);
-TWSA_temp(148) = NaN;
-TWSA_temp(149:end) = TWSA(148:end);
-
-TWSA = TWSA_temp;
-t_twsa = t_twsa_temp;
+TWS_temp = zeros(174,1);
 
 figure
 hold on

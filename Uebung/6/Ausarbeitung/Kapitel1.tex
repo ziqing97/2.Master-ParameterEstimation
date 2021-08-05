@@ -8,9 +8,10 @@ The Relationships between Discharge and $\Delta S$ is shown in \autoref{fig:rela
 	\label{fig:relationship}
 \end{figure}
 \section{b}
-\begin{equation*}
-	\frac{dR}{dt} + \frac{R}{\tau} = \omega^2_n S
-\end{equation*}
+\begin{gather*}
+	\frac{dS}{dt} = P-ET-R \\
+	\frac{dR}{dt} + \frac{R}{\tau} = \omega^2_n (\Delta S + S_{0})
+\end{gather*}
 \section{c}
 \begin{gather*}
 	\frac{R_t - R_{t-1}}{\Delta t} + \frac{R_t}{\tau} = \omega^2_n S_t \\
@@ -59,6 +60,9 @@ R_{predict}
 \end{bmatrix} 
 \end{gather*}
 which means
+\begin{equation*}
+	\Delta S(t_{n+1}) = \Delta S(t{n}) + P(t_{n}) - ET(t_{n}) - R(t_{n})
+\end{equation*}
 \begin{gather*}
 	\begin{bmatrix}
 		\Delta S_{n+1} \\
@@ -87,7 +91,20 @@ ET
 	R_{predict} 
 \end{bmatrix} 
 \end{gather*}
+\begin{equation*}
+	R_{measured} = R_{predict} 
+\end{equation*}
 Variance for $R$, I have $R$ from 1968.
 \begin{gather*}
 	\sigma^2_{R_{January}} = \frac{1}{n-1}\sum (R_{i,January} - \bar{R}_{January})^2
 \end{gather*}
+\begin{equation*}
+	\begin{bmatrix}
+		0 & 1 & -1\\
+		\omega^2 \tau (e^{\frac{\Delta t}{\tau}} - 1) & 0 & 0
+	\end{bmatrix} \cdot \begin{bmatrix}
+	\sigma_{S_{0}}\\
+	\sigma_{P}\\
+	\sigma_{ET}
+\end{bmatrix}
+\end{equation*}

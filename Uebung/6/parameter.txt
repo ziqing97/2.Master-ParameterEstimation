@@ -1,0 +1,5 @@
+tau 36,03 per day minus in model
+
+omega omega_n2 = 2,385e-4 days^-2
+
+S_0 = 1,802e12 m^3
