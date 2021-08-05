@@ -158,19 +158,7 @@ t1 = t;
 t2 = t_twsa;
 t = datenum(t);
 t_twsa = datenum(t_twsa);
-t_twsa_temp = zeros(174,1);
-TWSA_temp = zeros(174,1);
 
-t_twsa_temp(1:147) = t_twsa(1:147);
-t_twsa_temp(148) = mean(t_twsa(147),t_twsa(148));
-t_twsa_temp(149:end) = t_twsa(148:end);
-
-TWSA_temp(1:147) = TWSA(1:147);
-TWSA_temp(148) = NaN;
-TWSA_temp(149:end) = TWSA(148:end);
-
-TWSA = TWSA_temp;
-t_twsa = t_twsa_temp;
 
 figure
 hold on
@@ -178,10 +166,11 @@ title('TWSA')
 
 err_plot(t(2:end),x(2:end,1),std2_TWSA,"blue")
 err_plot(t(1:end-1),xnnp(1:end-1,1),std_xnnp_TWSA,"green")
-err_plot(t_twsa,TWSA,std_TWSA,"red")
+err_plot(t_twsa(1:147),TWSA(1:147),std_TWSA(1:147),"red")
+err_plot(t_twsa(148:end),TWSA(148:end),std_TWSA(148:end),"red")
 
 datetick('x')
-legend('Estimate','','Prior','','Likelihood','')
+legend('Estimate','','Prior','','Likelihood GRACE','','Likelihood GRACE-FO','')
 set(gca,'FontSize', 20);
 pbaspect([3 1 1])
 
