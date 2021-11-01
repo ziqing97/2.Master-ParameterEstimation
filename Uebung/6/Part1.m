@@ -50,10 +50,9 @@ A = [R(1:end-1), dS(1:end-1), ones(length(R)-1,1)];
 para = (A' * A) \ A' * R(2:end);
 
 % parameter
-tau = 1 / log(para(1));
+tau = -1 / log(para(1));
 S0 = para(3) / para(2);
 omega = sqrt(para(2) / tau / (exp(1/tau) -1));
 
 parameter = [tau,S0,omega];
 save('parameter.mat','parameter')
-save('sigma_S0.mat','sigma_S0')

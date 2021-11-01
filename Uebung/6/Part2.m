@@ -170,7 +170,7 @@ err_plot(t_twsa(1:147),TWSA(1:147),std_TWSA(1:147),"red")
 err_plot(t_twsa(148:end),TWSA(148:end),std_TWSA(148:end),"red")
 
 datetick('x')
-legend('Estimate','','Prior','','Likelihood GRACE','','Likelihood GRACE-FO','')
+legend('Posterior','','Prior','','Likelihood GRACE','','Likelihood GRACE-FO','')
 set(gca,'FontSize', 20);
 pbaspect([3 1 1])
 
@@ -182,9 +182,10 @@ t_r = datenum(t_r);
 t_r = t_r';
 err_plot(t(2:end),x(2:end,2),std2_R,"blue")
 err_plot(t(1:end-1),xnnp(1:end-1,2),std_xnnp_R,"green")
-err_plot(t_r,R,std_R,"red")
+err_plot(t_r(1:167),R(1:167),std_R(1:167),"red")
+err_plot(t_r(169:end-1),R(169:end-1),std_R(169:end-1),"red")
 
 datetick('x')
-legend('Estimate','','Prior','','Likelihood','')
+legend('Posterior','','Prior','','Likelihood','')
 set(gca,'FontSize', 20);
 pbaspect([3 1 1])
